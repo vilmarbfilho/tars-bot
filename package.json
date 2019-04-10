@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vilmarbfilho/trending-bot-br#readme",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "twitter": "^1.7.1"
   }
 }
