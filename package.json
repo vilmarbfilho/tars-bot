@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vilmarbfilho/trending-bot-br/issues"
   },
-  "homepage": "https://github.com/vilmarbfilho/trending-bot-br#readme"
+  "homepage": "https://github.com/vilmarbfilho/trending-bot-br#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
