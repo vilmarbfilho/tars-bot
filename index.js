@@ -1,9 +1,9 @@
 const robots = {
-
+    trendings: require('./robots/trendings.js')
 }
 
-function start() {
-
+async function start() {
+    await robots.trendings()
 }
 
 start()

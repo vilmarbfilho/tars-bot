@@ -1,28 +1,31 @@
-const Twitter = require('twitter');
+const Twit = require('twit')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
-const WOEID_ID = '30' // Brasil
+// Brasil
+const params = {
+	id: '1'
+}
 
-const client = new Twitter({
-  consumer_key: twitterCredentials.consumer_key,
-  consumer_secret: twitterCredentials.consumer_secret,
-  access_token_key: twitterCredentials.access_token_key,
-  access_token_secret: twitterCredentials.access_token_secret
+const client = new Twit({
+	consumer_key: twitterCredentials.consumer_key,
+	consumer_secret: twitterCredentials.consumer_secret,
+	access_token: twitterCredentials.access_key,
+	access_token_secret: twitterCredentials.access_token_secret,
+    timeout_ms: 60*1000,  // optional HTTP request timeout to apply to all requests.
+    strictSSL: true
 });
 
-const params = {screen_name: 'nodejs'}
-
 async function robot() {
+	await getTrendingTopicsTwitter()
 
 	async function getTrendingTopicsTwitter() {
-		client.get(`trends/place.json?id=${WOEID_ID}`, params, (error, response) => {
-			if(!error) {
-				console.log(response)
-			}
+		client.get('trends/place', params, function(error, data, response) {
+			if (error) throw error
+			
+			console.log(data)
 		})
 	}
-
 }
 
 module.exports = robot
