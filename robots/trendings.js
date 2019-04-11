@@ -1,10 +1,11 @@
 const Twit = require('twit')
+const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
 // Brasil
 const params = {
-	id: '1'
+	id: '23424768'
 }
 
 const client = new Twit({
@@ -23,7 +24,8 @@ async function robot() {
 		client.get('trends/place', params, function(error, data, response) {
 			if (error) throw error
 			
-			console.log(data)
+			state.save('trendings', data)
+			console.log('trendings topics saved')
 		})
 	}
 }
