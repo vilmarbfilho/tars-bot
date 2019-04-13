@@ -12,17 +12,46 @@ const client = new Twit({
     strictSSL: true
 });
 
-const COUNT_MAX_TWEETS = 10 
+const COUNT_MAX_TWEETS = 5 
 
 async function robot() {
+	const content = state.load()
 
-    async function getTweetsByTrending(trending) {
-        client.get('search/tweets', { q: trending, count: COUNT_MAX_TWEETS }, function(error, data, response) {
-			if (error) throw error
-			
-			console.log('tweets received!')
+	await getTweetsOfAllTrending(content)
+
+	state.save(content)
+
+	console.log('>> tweets saved')
+
+    async function getTweetsOfAllTrending(content) {
+		for (const trend of content.trends) {
+			const dataTweets = await getTweetsByTrend(trend.query)
+
+			trend.tweets = getOnlyTweetText(dataTweets.statuses)
+
+        	console.log(`>>> tweets received of trend: ${trend.name}`)
+		}
+	}
+	
+	async function getTweetsByTrend(trend) {
+		return new Promise((resolve, reject) => {
+			client.get('search/tweets', { q: trend, count: COUNT_MAX_TWEETS }, function(error, data, response) {
+				if (error) throw error
+				
+				resolve(data)
+			})
 		})
-    }
+	}
+
+	function getOnlyTweetText(tweets) {
+		const arrText = []
+
+		for (const tweet of tweets) {
+			arrText.push(tweet.text)
+		}
+
+		return arrText
+	}
 }
 
 module.exports = robot
