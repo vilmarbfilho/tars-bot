@@ -24,8 +24,10 @@ async function robot() {
 		client.get('trends/place', params, function(error, data, response) {
 			if (error) throw error
 			
-			state.save('trendings', data)
-			console.log('trendings topics saved')
+			const content = data[0]
+			state.save(content)
+
+			console.log('>> trendings topics saved')
 		})
 	}
 }
