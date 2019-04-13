@@ -25,10 +25,25 @@ async function robot() {
 			if (error) throw error
 			
 			const content = data[0]
-			state.save(content)
+			state.save(sanitizeTrends(content.trends))
 
 			console.log('>> trendings topics saved')
 		})
+	}
+
+	function sanitizeTrends(trends) {
+		const arrTrends = []
+
+		for (trend of trends) {
+			const sanitizeTrend = {
+				name : trend.name,
+				query : trend.query
+			}
+
+			arrTrends.push(sanitizeTrend)
+		}
+		
+		return arrTrends
 	}
 }
 

@@ -23,8 +23,8 @@ async function robot() {
 
 	console.log('>> tweets saved')
 
-    async function getTweetsOfAllTrending(content) {
-		for (const trend of content.trends) {
+    async function getTweetsOfAllTrending(trends) {
+		for (const trend of trends) {
 			const dataTweets = await getTweetsByTrend(trend.query)
 
 			trend.tweets = getOnlyTweetText(dataTweets.statuses)
