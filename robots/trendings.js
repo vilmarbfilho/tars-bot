@@ -24,9 +24,26 @@ async function robot() {
 		client.get('trends/place', params, function(error, data, response) {
 			if (error) throw error
 			
-			state.save('trendings', data)
-			console.log('trendings topics saved')
+			const content = data[0]
+			state.save(sanitizeTrends(content.trends))
+
+			console.log('>> trendings topics saved')
 		})
+	}
+
+	function sanitizeTrends(trends) {
+		const arrTrends = []
+
+		for (trend of trends) {
+			const sanitizeTrend = {
+				name : trend.name,
+				query : trend.query
+			}
+
+			arrTrends.push(sanitizeTrend)
+		}
+		
+		return arrTrends
 	}
 }
 
