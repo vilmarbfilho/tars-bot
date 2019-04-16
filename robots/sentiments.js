@@ -42,9 +42,7 @@ async function robot() {
                 if (error) {
                     throw error
                 }
-
-                console.log(response.sentiment.document)
-
+                
                 resolve(response.sentiment.document)
             })
         })

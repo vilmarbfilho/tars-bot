@@ -35,7 +35,7 @@ async function robot() {
 	
 	async function getTweetsByTrend(trend) {
 		return new Promise((resolve, reject) => {
-			client.get('search/tweets', { q: trend, count: COUNT_MAX_TWEETS }, function(error, data, response) {
+			client.get('search/tweets', { q: trend, count: COUNT_MAX_TWEETS, lang: 'pt' }, function(error, data, response) {
 				if (error) throw error
 				
 				resolve(data)
