@@ -47,7 +47,11 @@ async function robot() {
 		const arrText = []
 
 		for (const tweet of tweets) {
-			arrText.push(tweet.text)
+			const sanitized = {
+				text : tweet.text
+			}
+
+			arrText.push(sanitized)
 		}
 
 		return arrText
