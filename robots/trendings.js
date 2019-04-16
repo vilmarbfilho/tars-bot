@@ -18,16 +18,21 @@ const client = new Twit({
 });
 
 async function robot() {
-	await getTrendingTopicsTwitter()
+	const content = await getTrendingTopicsTwitter()
+	state.save(content)
+
+	console.log('>> trendings topics saved')
 
 	async function getTrendingTopicsTwitter() {
-		client.get('trends/place', params, function(error, data, response) {
-			if (error) throw error
+		return new Promise((resolve, reject) => {
+			client.get('trends/place', params, function(error, data, response) {
+				if (error) throw error
+				
+				const content = data[0]
+				const sanitized = sanitizeTrends(content.trends)
 			
-			const content = data[0]
-			state.save(sanitizeTrends(content.trends))
-
-			console.log('>> trendings topics saved')
+				resolve(sanitized)
+			})
 		})
 	}
 
