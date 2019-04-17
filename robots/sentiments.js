@@ -27,7 +27,11 @@ async function robot() {
 
     async function analyzeSentimentsOfAllTweets(tweets) {
         for (const tweet of tweets) {
-            tweet.sentiment = await analyzeSentence(tweet.text)
+            try {
+                tweet.sentiment = await analyzeSentence(tweet.text)
+            } catch (err) {
+                console.log(`#### Error on analyze of tweet: ${tweet.text}`)
+            }
         }
     }
 
@@ -40,10 +44,10 @@ async function robot() {
                 }
             }, (error, response) => {
                 if (error) {
-                    throw error
+                    reject(error)
+                } else {
+                    resolve(response.sentiment.document)
                 }
-                
-                resolve(response.sentiment.document)
             })
         })
     }
