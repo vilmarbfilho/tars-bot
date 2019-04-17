@@ -1,6 +1,8 @@
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1.js')
 
+const emojiStrip = require('emoji-strip')
+
 const state = require('./state.js')
 
 const nlu = new NaturalLanguageUnderstandingV1({
@@ -27,10 +29,11 @@ async function robot() {
 
     async function analyzeSentimentsOfAllTweets(tweets) {
         for (const tweet of tweets) {
+            const sanitizedText = emojiStrip(tweet.text)
             try {
-                tweet.sentiment = await analyzeSentence(tweet.text)
+                tweet.sentiment = await analyzeSentence(sanitizedText)
             } catch (err) {
-                console.log(`#### Error on analyze of tweet: ${tweet.text}`)
+                console.log(`#### Error on analyze of tweet: ${sanitizedText}`)
             }
         }
     }

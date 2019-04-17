@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vilmarbfilho/trending-bot-br#readme",
   "dependencies": {
+    "emoji-strip": "^1.0.1",
     "ibm-watson": "^4.0.1",
     "twit": "^2.2.11"
   }
