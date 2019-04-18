@@ -3,6 +3,8 @@ const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
+const limitTrends = 3
+
 // Brasil
 const params = {
 	id: '23424768'
@@ -18,7 +20,8 @@ const client = new Twit({
 });
 
 async function robot() {
-	const content = await getTrendingTopicsTwitter()
+	let content = await getTrendingTopicsTwitter()
+	content = limitMaximumTrends(content)
 	state.save(content)
 
 	console.log('>> trendings topics saved')
@@ -49,6 +52,10 @@ async function robot() {
 		}
 		
 		return arrTrends
+	}
+
+	function limitMaximumTrends(content) {
+		return content.slice(0, limitTrends)
 	}
 }
 
