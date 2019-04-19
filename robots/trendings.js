@@ -45,7 +45,8 @@ async function robot() {
 		for (trend of trends) {
 			const sanitizeTrend = {
 				name : trend.name,
-				query : trend.query
+				query : trend.query,
+				url: trend.url
 			}
 
 			arrTrends.push(sanitizeTrend)
