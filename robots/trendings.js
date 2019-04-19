@@ -3,6 +3,8 @@ const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
+const LIMIT_TRENDS = 3 // 0 = all trends downloaded
+
 // Brasil
 const params = {
 	id: '23424768'
@@ -18,16 +20,22 @@ const client = new Twit({
 });
 
 async function robot() {
-	await getTrendingTopicsTwitter()
+	let content = await getTrendingTopicsTwitter()
+	content = limitMaximumTrends(content)
+	state.save(content)
+
+	console.log('>> trendings topics saved')
 
 	async function getTrendingTopicsTwitter() {
-		client.get('trends/place', params, function(error, data, response) {
-			if (error) throw error
+		return new Promise((resolve, reject) => {
+			client.get('trends/place', params, function(error, data, response) {
+				if (error) throw error
+				
+				const content = data[0]
+				const sanitized = sanitizeTrends(content.trends)
 			
-			const content = data[0]
-			state.save(sanitizeTrends(content.trends))
-
-			console.log('>> trendings topics saved')
+				resolve(sanitized)
+			})
 		})
 	}
 
@@ -44,6 +52,12 @@ async function robot() {
 		}
 		
 		return arrTrends
+	}
+
+	function limitMaximumTrends(content) {
+		return LIMIT_TRENDS 
+			? content.slice(0, LIMIT_TRENDS) 
+			: content
 	}
 }
 
