@@ -24,6 +24,7 @@ async function robot() {
         for (const trend of trends) {
             console.log(`>>> Analyze sentiments of: ${trend.name}`)
             await analyzeSentimentsOfAllTweets(trend.tweets)
+            await averageSentimentsOfTrend(trend)
         }
     }
 
@@ -53,6 +54,33 @@ async function robot() {
                 }
             })
         })
+    }
+    
+    async function averageSentimentsOfTrend(trend) {
+        let totalScore = 0
+        let totalTweetsRegistered = 0
+
+        for (tweet of trend.tweets) {
+            if (tweet.sentiment) {
+                totalScore += tweet.sentiment.score
+                totalTweetsRegistered++ 
+            }
+        }
+
+        if (totalScore && totalTweetsRegistered) {
+            const averageScoreSentiment = totalScore / totalTweetsRegistered
+            trend.sentiment = getSentimentByScore(averageScoreSentiment) 
+        }
+    }
+
+    function getSentimentByScore(score) {
+        if (score > 0) {
+            return "positive"
+        } else if (score < 0) {
+            return "negative"
+        } else {
+            return "neutral"
+        }
     }
 }
 

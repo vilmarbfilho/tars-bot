@@ -3,7 +3,7 @@ const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
-const limitTrends = 0 // 0 = all trends downloaded
+const LIMIT_TRENDS = 3 // 0 = all trends downloaded
 
 // Brasil
 const params = {
@@ -55,8 +55,8 @@ async function robot() {
 	}
 
 	function limitMaximumTrends(content) {
-		return limitTrends 
-			? content.slice(0, limitTrends) 
+		return LIMIT_TRENDS 
+			? content.slice(0, LIMIT_TRENDS) 
 			: content
 	}
 }
