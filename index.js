@@ -1,5 +1,6 @@
+const state = require('./state.js')
+
 const robots = {
-    state: require('./robots/state.js'),
     trendings: require('./robots/trendings.js'),
     tweets: require('./robots/tweets.js'),
     sentiments: require('./robots/sentiments.js'),
@@ -9,12 +10,15 @@ const robots = {
 async function start() {
     const date = new Date()
     const start = date.getTime();
-    
-    //console.log(`${date.toDateString()} ${date.toLocaleTimeString()}`)
-    await robots.trendings()
-    await robots.tweets()
-    await robots.sentiments()
-    await robots.share()
+
+    // define name of content file
+    const nameFile = `log_analyze_${date.toDateString()}_${date.toLocaleTimeString()}`.replace(/\s/g, "_")
+    state.defineName(nameFile)
+
+    await robots.trendings(state)
+    await robots.tweets(state)
+    await robots.sentiments(state)
+    await robots.share(state)
 
     const end = new Date().getTime();
 

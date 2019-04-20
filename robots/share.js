@@ -1,7 +1,5 @@
 const Twit = require('twit')
 
-const state = require('./state.js')
-
 const twitterCredentials = require('../credentials/twitter.json')
 
 const client = new Twit({
@@ -13,7 +11,7 @@ const client = new Twit({
     strictSSL: true
 });
 
-async function robot() {
+async function robot(state) {
 	const content = state.load()
 	const date = new Date()
 

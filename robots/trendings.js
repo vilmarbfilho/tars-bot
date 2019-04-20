@@ -1,5 +1,4 @@
 const Twit = require('twit')
-const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
@@ -19,7 +18,7 @@ const client = new Twit({
     strictSSL: true
 });
 
-async function robot() {
+async function robot(state) {
 	let content = await getTrendingTopicsTwitter()
 	content = limitMaximumTrends(content)
 	state.save(content)
