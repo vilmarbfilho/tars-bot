@@ -15,13 +15,18 @@ const client = new Twit({
 
 async function robot() {
 	const content = state.load()
+	const date = new Date()
 
+	await shareTweet(`That's the analyze sentiments about the ${content.length}o trends in ${date.toDateString()} ${date.toLocaleTimeString()}`)
 	await shareAnalyzeAllTrends(content)
 
 	async function shareAnalyzeAllTrends(trends) {
-		for (const trend of trends) {
+		for (let trendIndex = 0; trendIndex < trends.length; trendIndex++) {
+			const trend = trends[trendIndex]
+			const position = trendIndex + 1
+
 			const tweet = `
-				[Trend]
+				[${position}o Trend]
 				${trend.name}	
 
 				[Tweets feelings] 
