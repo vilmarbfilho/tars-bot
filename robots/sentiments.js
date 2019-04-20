@@ -3,15 +3,13 @@ const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-unde
 
 const emojiStrip = require('emoji-strip')
 
-const state = require('./state.js')
-
 const nlu = new NaturalLanguageUnderstandingV1({
     iam_apikey: watsonApiKey,
     version: '2018-04-05',
     url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
  })
 
-async function robot() {
+async function robot(state) {
     const content = state.load()
 
     await analyzeSentimentsOfAllTreads(content)

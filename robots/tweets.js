@@ -1,5 +1,4 @@
 const Twit = require('twit')
-const state = require('./state.js')
 
 const twitterCredentials = require('../credentials/twitter.json')
 
@@ -14,7 +13,7 @@ const client = new Twit({
 
 const COUNT_MAX_TWEETS = 5 
 
-async function robot() {
+async function robot(state) {
 	const content = state.load()
 
 	await getTweetsOfAllTrending(content)
