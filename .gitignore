@@ -65,12 +65,12 @@ package-lock.json
 # credentials
 credentials/*.json
 
-content.json
-
+# folder content
 content/*.png
 content/*.jpg
 content/*.js
 content/*.mov
+content/*json
 Adobe After Effects Auto-Save
 template.aep Logs
 .DS_Store
