@@ -1,6 +1,4 @@
-const Twit = require('twit')
-
-const twitterCredentials = require('../credentials/twitter.json')
+const client = require('./client/twitter-client.js')
 
 const LIMIT_TRENDS = 3 // 0 = all trends downloaded
 
@@ -8,15 +6,6 @@ const LIMIT_TRENDS = 3 // 0 = all trends downloaded
 const params = {
 	id: '23424768'
 }
-
-const client = new Twit({
-	consumer_key: twitterCredentials.consumer_key,
-	consumer_secret: twitterCredentials.consumer_secret,
-	access_token: twitterCredentials.access_key,
-	access_token_secret: twitterCredentials.access_token_secret,
-    timeout_ms: 60*1000,  // optional HTTP request timeout to apply to all requests.
-    strictSSL: true
-});
 
 async function robot(state) {
 	let content = await getTrendingTopicsTwitter()

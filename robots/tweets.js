@@ -1,17 +1,6 @@
-const Twit = require('twit')
+const client = require('./client/twitter-client.js')
 
-const twitterCredentials = require('../credentials/twitter.json')
-
-const client = new Twit({
-	consumer_key: twitterCredentials.consumer_key,
-	consumer_secret: twitterCredentials.consumer_secret,
-	access_token: twitterCredentials.access_key,
-	access_token_secret: twitterCredentials.access_token_secret,
-    timeout_ms: 60*1000,  // optional HTTP request timeout to apply to all requests.
-    strictSSL: true
-});
-
-const COUNT_MAX_TWEETS = 5 
+const COUNT_MAX_TWEETS = 10
 
 async function robot(state) {
 	const content = state.load()
