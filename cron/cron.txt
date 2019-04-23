@@ -1,0 +1,2 @@
+MAILTO=vilmarbf.ads@gmail.com
+0 */4 * * * node ../index.js
