@@ -1,20 +1,20 @@
 # Trending Bot
 POC about a bot that get the trending topics of twitter and analyze the feeling over tweets.
 
-# Purpose
+### Purpose
 ...
 
-# Technology
+### Technology
 ...
 
-# Results
+### Results
 ...
 
-#### Twitter
+### Twitter
 Twitter of bot
 [@t4rsb0t](https://twitter.com/t4rsb0t)
 
-#### Screenshots
+### Screenshots
 ![](screenshot/terminal.png)
 
 
