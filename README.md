@@ -15,7 +15,7 @@ Twitter of bot
 [@t4rsb0t](https://twitter.com/t4rsb0t)
 
 #### Screenshots
-![](screenshot/tweets.png)
-
-
 ![](screenshot/terminal.png)
+
+
+![](screenshot/tweets.png)
