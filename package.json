@@ -19,6 +19,7 @@
   "dependencies": {
     "emoji-strip": "^1.0.1",
     "ibm-watson": "^4.0.1",
-    "twit": "^2.2.11"
+    "twit": "^2.2.11",
+    "node-cron": "2.0.3"
   }
 }
