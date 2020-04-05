@@ -73,11 +73,11 @@ async function robot(state) {
 
     function getSentimentByScore(score) {
         if (score > 0) {
-            return "positive"
+            return "Positivo"
         } else if (score < 0) {
-            return "negative"
+            return "Negativo"
         } else {
-            return "neutral"
+            return "Neutro"
         }
     }
 }

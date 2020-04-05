@@ -13,13 +13,13 @@ async function robot(state) {
 			const position = trendIndex + 1
 
 			const tweet = `
-				[${position}o Trend]
+				[${position}a Posição]
 				${trend.name}	
 
-				[Tweets feelings] 
+				[Sentimento nos Tweets] 
 				${trend.sentiment}
 				
-				[More] 
+				[Mais] 
 				${trend.url}
 			`
 			await shareTweet(tweet)
