@@ -4,7 +4,7 @@ async function robot(state) {
 	const content = state.load()
 	const date = new Date()
 
-	await shareTweet(`That's the analyze sentiments about the ${content.length}o trends in ${date.toDateString()} ${date.toLocaleTimeString()}`)
+	await shareTweet(`Essa é a análise de sentimentos dos ${content.length}o trends em ${date.toDateString()} ${date.toLocaleTimeString()}`)
 	await shareAnalyzeAllTrends(content)
 
 	async function shareAnalyzeAllTrends(trends) {
