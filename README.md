@@ -1,4 +1,4 @@
-# Trending Bot
+# TARS | Trending Bot
 POC about a bot that get the trending topics of twitter and analyze the feeling over tweets.
 
 ### Purpose
